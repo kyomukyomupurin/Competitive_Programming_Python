@@ -18,7 +18,7 @@ class SegmentTree:
         self.node = [ie] * (2 * self.n)
 
         for i in range(self.sz):
-            self.node[i + n] = self.data[i]
+            self.node[i + self.n] = self.data[i]
 
         for i in range(self.n - 1, 0, -1):
             self.node[i] = self.f(self.node[2 * i], self.node[2 * i + 1])
