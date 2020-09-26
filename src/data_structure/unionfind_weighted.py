@@ -3,13 +3,13 @@
 #     https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_1_B
 
 class UnionFind:
-    def __init__(self, n):
+    def __init__(self, n : int):
         self.n = n
         self.par = [-1] * n
         self.rank = [0] * n
         self.diff_weight = [0] * n
 
-    def root(self, x):
+    def root(self, x : int) -> int:
         if self.par[x] == -1:
             return x
         else:
@@ -18,15 +18,15 @@ class UnionFind:
             self.par[x] = r
             return self.par[x]
 
-    def weight(self, x):
+    def weight(self, x : int) -> int:
         self.root(x)
         return self.diff_weight[x]
 
-    def same(self, x, y):
+    def same(self, x : int, y : int) -> bool:
         return self.root(x) == self.root(y)
 
     # y is w larger than x
-    def unite(self, x, y, w):
+    def unite(self, x : int, y : int, w : int):
         w += self.weight(x)
         w -= self.weight(y)
         x = self.root(x)
@@ -42,7 +42,7 @@ class UnionFind:
         self.diff_weight[y] = w
         return
 
-    def diff(self, x, y):
+    def diff(self, x : int, y : int) -> int:
         return self.weight(y) - self.weight(x)
 
 # verification code

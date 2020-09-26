@@ -3,7 +3,7 @@
 #     https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B
 
 class FenwickTree:
-    def __init__(self, data):
+    def __init__(self, data : list):
         self.data = data
         self.n = len(data) + 1
         self.node = [0] * (self.n + 1)
@@ -11,14 +11,14 @@ class FenwickTree:
         for i in range(self.n - 1):
             self.add(i, self.data[i])
 
-    def add(self, pos, val):
+    def add(self, pos : int, val : int):
         pos += 1
         while pos < self.n:
             self.node[pos] += val
             pos += pos & -pos
 
     # return sum of [l, r)
-    def get(self, l, r):
+    def get(self, l : int, r : int) -> int:
         res = 0
 
         while (l < r):
@@ -30,7 +30,7 @@ class FenwickTree:
 
         return res
 
-    def lower_bound(self, val):
+    def lower_bound(self, val : int) -> int:
         if val <= 0:
             return 0
         pos = 0

@@ -5,7 +5,7 @@
 #     https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B
 
 class SegmentTree:
-    def __init__(self, data, ie, f):
+    def __init__(self, data : list, ie, f):
         self.data = data
         self.ie = ie
         self.f = f
@@ -23,14 +23,14 @@ class SegmentTree:
         for i in range(self.n - 1, 0, -1):
             self.node[i] = self.f(self.node[2 * i], self.node[2 * i + 1])
 
-    def update(self, pos, val):
+    def update(self, pos : int, val):
         pos += self.n
         self.node[pos] = val
         while pos:
             pos >>= 1
             self.node[pos] = self.f(self.node[2 * pos], self.node[2 * pos + 1])
 
-    def get(self, l, r):
+    def get(self, l : int, r : int):
         vl, vr = self.ie, self.ie
         l += self.n
         r += self.n
@@ -45,7 +45,7 @@ class SegmentTree:
             r >>= 1
         return self.f(vl, vr)
 
-    def at(self, pos):
+    def at(self, pos : int):
         return self.node[self.n + pos]
 
 # verification code
